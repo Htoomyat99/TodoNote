@@ -6,27 +6,38 @@ class ToDoItem extends StatelessWidget {
   final bool taskCompleted;
   final Function(bool?)? onChanged;
   final Function(BuildContext)? deleteTask;
+  final Function(BuildContext)? goEditTask;
 
   const ToDoItem(
       {super.key,
       required this.todoText,
       required this.taskCompleted,
       required this.onChanged,
-      required this.deleteTask});
+      required this.deleteTask,
+      required this.goEditTask});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 25, left: 20, right: 20),
       child: Slidable(
-        endActionPane: ActionPane(motion: const StretchMotion(), children: [
-          SlidableAction(
-            onPressed: deleteTask,
-            icon: Icons.delete,
-            backgroundColor: Colors.red.shade300,
-            borderRadius: BorderRadius.circular(8),
-          )
-        ]),
+        endActionPane: ActionPane(
+          motion: const StretchMotion(),
+          children: [
+            SlidableAction(
+              onPressed: deleteTask,
+              icon: Icons.delete,
+              backgroundColor: Colors.red.shade300,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            SlidableAction(
+              onPressed: goEditTask,
+              icon: Icons.edit,
+              backgroundColor: Colors.green,
+              borderRadius: BorderRadius.circular(8),
+            )
+          ],
+        ),
         child: Container(
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 231, 209, 9),

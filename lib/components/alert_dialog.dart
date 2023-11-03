@@ -5,11 +5,14 @@ class DialogBox extends StatelessWidget {
   final controller;
   final VoidCallback onSaved;
   final VoidCallback onCancel;
+  final String hintText;
+
   const DialogBox(
       {super.key,
       required this.controller,
       required this.onCancel,
-      required this.onSaved});
+      required this.onSaved,
+      required this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +27,15 @@ class DialogBox extends StatelessWidget {
               ),
               TextField(
                 controller: controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Add a new task',
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2,
+                      color: Colors.yellow.shade600,
+                    ),
+                  ),
+                  hintText: hintText,
                 ),
               ),
               const SizedBox(
